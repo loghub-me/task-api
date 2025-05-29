@@ -1,9 +1,21 @@
-import { Elysia, status } from 'elysia';
+import { Elysia, status, t } from 'elysia';
 import jwt from '@elysiajs/jwt';
+import { cors } from '@elysiajs/cors';
+import { ImageService } from './services/image';
 
 const app = new Elysia()
+  .use(
+    cors({
+      origin: Bun.env.CLIENT_HOST,
+      methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+      allowedHeaders: ['Authorization'],
+      credentials: true,
+      exposeHeaders: ['Authorization'],
+      maxAge: 3600,
+    })
+  )
   .use(jwt({ name: 'jwt', alg: 'HS512', secret: Bun.env.JWT_SECRET!! }))
-  .derive(({ jwt, headers }) => {
+  .derive(async ({ jwt, headers }) => {
     const authHeader = headers['authorization'];
     if (!authHeader?.startsWith('Bearer ')) {
       return status(401, 'Unauthorized');
@@ -16,13 +28,24 @@ const app = new Elysia()
     }
 
     try {
-      const payload = jwt.verify(token);
+      const payload = await jwt.verify(token);
       return { isAuth: true, payload };
     } catch {
       return status(401, 'Invalid Token');
     }
   })
-  .get('/', () => 'Hello Elysia')
-  .listen(3000);
+  .post(
+    '/image/upload',
+    ({ payload, body: { file } }) => {
+      if (!payload || !payload.username || typeof payload.username !== 'string') {
+        return status(400, 'Invalid payload');
+      }
+      return ImageService.upload(payload.username, file);
+    },
+    {
+      body: t.Object({ file: t.File({ type: ['image/jpeg', 'image/png', 'image/gif'] }) }),
+    }
+  )
+  .listen(Bun.env.PORT || 8081);
 
 console.log(`🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`);
