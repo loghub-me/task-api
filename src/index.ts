@@ -25,12 +25,12 @@ const app = new Elysia()
     const token = authHeader.slice(7); // Remove Bearer
 
     if (token === Bun.env.INTERNAL_TOKEN) {
-      return { isAuth: true };
+      return { authType: 'INTERNAL' } as AuthReturn;
     }
 
     try {
       const payload = await jwt.verify(token);
-      return { isAuth: true, payload };
+      return { payload, authType: 'JWT' } as AuthReturn;
     } catch {
       return status(401, 'Invalid Token');
     }
@@ -38,8 +38,11 @@ const app = new Elysia()
   .post(
     '/image/upload',
     ({ payload, body: { file } }) => {
-      if (!payload || !payload.username || typeof payload.username !== 'string') {
-        return status(400, 'Invalid payload');
+      if (!payload || payload.authType !== 'JWT') {
+        return status(401, 'Unauthorized');
+      }
+      if (!payload.username || typeof payload.username !== 'string') {
+        return status(400, 'Invalid username in token');
       }
       return ImageService.upload(payload.username, file);
     },
@@ -47,9 +50,18 @@ const app = new Elysia()
       body: t.Object({ file: t.File({ type: ['image/jpeg', 'image/png', 'image/gif'] }) }),
     }
   )
-  .post('/markdown/parse', ({ body: { markdown } }) => MarkdownService.parse(markdown), {
-    body: t.Object({ markdown: t.Union([t.String(), t.Array(t.String())]) }),
-  })
+  .post(
+    '/markdown/parse',
+    ({ body: { markdown }, authType }) => {
+      if (authType !== 'INTERNAL') {
+        return status(403, 'Forbidden');
+      }
+      return MarkdownService.parse(markdown);
+    },
+    {
+      body: t.Object({ markdown: t.Union([t.String(), t.Array(t.String())]) }),
+    }
+  )
   .listen(Bun.env.PORT || 8081);
 
 console.log(`🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`);
