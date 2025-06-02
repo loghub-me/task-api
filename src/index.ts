@@ -1,7 +1,8 @@
 import { Elysia, status, t } from 'elysia';
 import jwt from '@elysiajs/jwt';
 import { cors } from '@elysiajs/cors';
-import { ImageService } from './services/image';
+import { ImageService } from '~/services/image';
+import { MarkdownService } from '~/services/markdown';
 
 const app = new Elysia()
   .use(
@@ -46,6 +47,9 @@ const app = new Elysia()
       body: t.Object({ file: t.File({ type: ['image/jpeg', 'image/png', 'image/gif'] }) }),
     }
   )
+  .post('/markdown/parse', ({ body: { markdown } }) => MarkdownService.parse(markdown), {
+    body: t.Object({ markdown: t.Union([t.String(), t.Array(t.String())]) }),
+  })
   .listen(Bun.env.PORT || 8081);
 
 console.log(`🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`);
