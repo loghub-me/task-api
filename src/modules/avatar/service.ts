@@ -1,6 +1,6 @@
 import { convertToWebpAndUploadImage, renameS3File } from '~/lib/image/upload';
 
-export abstract class UserService {
+export abstract class AvatarService {
   static async uploadAvatar(file: File, username: string) {
     if (!file.type.startsWith('image/')) {
       throw new Error('Invalid file type');

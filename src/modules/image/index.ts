@@ -1,11 +1,11 @@
 import { Elysia } from 'elysia';
 import { ImageService } from '~/modules/image/service';
 import { ImageModel } from '~/modules/image/model';
-import { authJwtPlugin } from '~/plugins/auth/jwt';
+import { authPlugin } from '~/plugins/auth';
 
 export const image = new Elysia({ prefix: '/image' })
-  .use(authJwtPlugin)
-  .post('/upload', ({ body: { file }, user }) => ImageService.upload(file, user.username), {
+  .use(authPlugin)
+  .post('/upload', ({ body: { file } }) => ImageService.upload(file), {
     body: ImageModel.uploadRequest,
     response: { 200: ImageModel.uploadResponse },
   });

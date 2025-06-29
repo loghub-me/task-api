@@ -1,23 +1,15 @@
 import { Elysia } from 'elysia';
-import { authJwtPlugin } from '~/plugins/auth/jwt';
-import { UserService } from '~/modules/avatar/service';
+import { AvatarService } from '~/modules/avatar/service';
 import { AvatarModel } from '~/modules/avatar/model';
-import { authInternalPlugin } from '~/plugins/auth/internal';
+import { authPlugin } from '~/plugins/auth';
 
 export const avatar = new Elysia({ prefix: '/avatar' })
-  .group('', (app) =>
-    app
-      .use(authJwtPlugin)
-      .post('/upload', ({ body: { file }, user }) => UserService.uploadAvatar(file, user.username), {
-        body: AvatarModel.uploadRequest,
-        response: { 200: AvatarModel.uploadResponse },
-      })
-  )
-  .group('', (app) =>
-    app
-      .use(authInternalPlugin)
-      .post('/rename', ({ body: { oldUsername, newUsername } }) => UserService.renameAvatar(oldUsername, newUsername), {
-        body: AvatarModel.renameRequest,
-        response: { 200: AvatarModel.renameResponse },
-      })
-  );
+  .use(authPlugin)
+  .post('/upload', ({ body: { file, username } }) => AvatarService.uploadAvatar(file, username), {
+    body: AvatarModel.uploadRequest,
+    response: { 200: AvatarModel.uploadResponse },
+  })
+  .post('/rename', ({ body: { oldUsername, newUsername } }) => AvatarService.renameAvatar(oldUsername, newUsername), {
+    body: AvatarModel.renameRequest,
+    response: { 200: AvatarModel.renameResponse },
+  });
