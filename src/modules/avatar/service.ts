@@ -1,21 +1,19 @@
-import { convertToWebpAndUploadImage, renameS3File } from '~/lib/image/upload';
+import { convertToWebpAndUploadImage } from '~/lib/image/upload';
 
 export abstract class AvatarService {
-  static async uploadAvatar(file: File, username: string) {
+  static async generateAvatar(username: string) {
+    const path = `${username}/avatar.webp`;
+    // TODO
+    return { data: path };
+  }
+
+  static async uploadAvatar(file: File, userId: number) {
     if (!file.type.startsWith('image/')) {
       throw new Error('Invalid file type');
     }
 
-    const path = `${username}/avatar.webp`;
+    const path = `${userId}/avatar.webp`;
     await convertToWebpAndUploadImage(file, path);
     return { data: path };
-  }
-
-  static async renameAvatar(oldUsername: string, newUsername: string) {
-    const oldPath = `${oldUsername}/avatar.webp`;
-    const newPath = `${newUsername}/avatar.webp`;
-
-    await renameS3File(oldPath, newPath);
-    return { data: newPath };
   }
 }

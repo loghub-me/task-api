@@ -1,5 +1,6 @@
 import { Elysia } from 'elysia';
 import { cors } from '@elysiajs/cors';
+import { authPlugin } from '~/plugins/auth';
 import { markdown } from '~/modules/markdown';
 import { image } from '~/modules/image';
 import { avatar } from '~/modules/avatar';
@@ -16,6 +17,7 @@ const app = new Elysia()
       maxAge: 3600,
     })
   )
+  .use(authPlugin)
   .use(markdown)
   .use(image)
   .use(avatar)
