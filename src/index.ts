@@ -4,7 +4,6 @@ import { authPlugin } from '~/plugins/auth';
 import { markdown } from '~/modules/markdown';
 import { image } from '~/modules/image';
 import { avatar } from '~/modules/avatar';
-import { mail } from '~/modules/mail';
 
 const app = new Elysia()
   .use(
@@ -18,10 +17,9 @@ const app = new Elysia()
     })
   )
   .use(authPlugin)
-  .use(markdown)
-  .use(image)
   .use(avatar)
-  .use(mail)
+  .use(image)
+  .use(markdown)
   .listen(Bun.env.PORT || 8081);
 
 console.log(`🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`);
