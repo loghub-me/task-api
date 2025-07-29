@@ -1,4 +1,4 @@
-import { convertToWebpAndUploadImage } from '~/lib/image/upload';
+import { convertToWebpAndUploadImage } from '~/lib/image';
 
 export abstract class ImageService {
   static async upload(file: File, userId: string) {
@@ -6,7 +6,8 @@ export abstract class ImageService {
       throw new Error('Invalid file type');
     }
 
-    const path = `${userId}/${Date.now()}_${file.name.replace(/\.[^/.]+$/, '')}.webp`;
+    const filename = file.name.replace(/\.[^/.]+$/, '');
+    const path = `${userId}/${Date.now()}_${filename}.webp`;
     await convertToWebpAndUploadImage(file, path);
     return { path };
   }

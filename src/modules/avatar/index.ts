@@ -3,7 +3,7 @@ import { AvatarService } from '~/modules/avatar/service';
 import { AvatarModel } from '~/modules/avatar/model';
 
 export const avatar = new Elysia({ prefix: '/avatar' })
-  .post('/generate', ({ body: { username } }) => AvatarService.generateAvatar(username), {
+  .post('/generate', ({ body: { userId } }) => AvatarService.generateAvatar(userId), {
     body: AvatarModel.generateRequest,
     response: { 200: AvatarModel.generateResponse },
   })

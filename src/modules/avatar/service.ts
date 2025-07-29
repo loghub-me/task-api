@@ -1,13 +1,15 @@
-import { convertToWebpAndUploadImage } from '~/lib/image/upload';
+import { convertToWebpAndUploadImage, writeBufferToS3 } from '~/lib/image';
+import { generateAvatarBuffer } from '~/lib/avatar';
 
 export abstract class AvatarService {
-  static async generateAvatar(username: string) {
-    const path = `${username}/avatar.webp`;
-    // TODO
+  static async generateAvatar(userId: number) {
+    const path = `${userId}/avatar.webp`;
+    const buffer = await generateAvatarBuffer({ seed: userId.toString() });
+    await writeBufferToS3(buffer, path);
     return { data: path };
   }
 
-  static async uploadAvatar(file: File, userId: number) {
+  static async uploadAvatar(file: File, userId: string) {
     if (!file.type.startsWith('image/')) {
       throw new Error('Invalid file type');
     }
