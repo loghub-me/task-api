@@ -1,4 +1,4 @@
-import { MarkdownRenderer } from 'loghub-markdown-parser';
+import { MarkdownRenderer } from 'loghub-markdown-renderer';
 
 export abstract class MarkdownService {
   private static renderer = new MarkdownRenderer({
@@ -9,9 +9,9 @@ export abstract class MarkdownService {
 
   static async parse(markdown: string | string[]) {
     if (typeof markdown === 'string') {
-      return { html: this.renderer.parse(markdown) };
+      return { html: this.renderer.render(markdown) };
     }
 
-    return { html: markdown.map((md) => this.renderer.parse(md)) };
+    return { html: markdown.map((md) => this.renderer.render(md)) };
   }
 }

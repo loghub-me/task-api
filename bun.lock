@@ -7,7 +7,7 @@
         "@elysiajs/bearer": "^1.3.0",
         "@elysiajs/cors": "^1.3.3",
         "elysia": "latest",
-        "loghub-markdown-parser": "^0.1.0",
+        "loghub-markdown-renderer": "^0.1.0",
         "sharp": "^0.34.2",
         "zod": "^3.25.67",
       },
@@ -134,7 +134,7 @@
 
     "linkify-it": ["linkify-it@5.0.0", "", { "dependencies": { "uc.micro": "^2.0.0" } }, "sha512-5aHCbzQRADcdP+ATqnDuhhJ/MRIqDkZX5pyjFHRRysS8vZ5AbqGEoFIb6pYHPZ+L/OC2Lc+xT8uHVVR5CAK/wQ=="],
 
-    "loghub-markdown-parser": ["loghub-markdown-parser@0.1.0", "", { "dependencies": { "highlight.js": "^11.11.1", "markdown-it": "^14.1.0", "markdown-it-anchor": "^9.2.0", "sanitize-html": "^2.17.0" } }, "sha512-zf1vspJqG/FypKFIeLj9tmNghwF44yL1xCnSUF6TfjoZ7Nf+F2FdOLQDO5DXfU/gnEsYb0I3u5mOUBnY65NnyA=="],
+    "loghub-markdown-renderer": ["loghub-markdown-renderer@0.1.0", "", { "dependencies": { "highlight.js": "^11.11.1", "markdown-it": "^14.1.0", "markdown-it-anchor": "^9.2.0", "sanitize-html": "^2.17.0" } }, "sha512-mWk825R0PqFvI3jmkP4KltIYylFMV4K2uaT99/QLG4T6gI5YOCCV8PopZUw2SRBtLOvgc4UYx4spjoWr+CaI5A=="],
 
     "markdown-it": ["markdown-it@14.1.0", "", { "dependencies": { "argparse": "^2.0.1", "entities": "^4.4.0", "linkify-it": "^5.0.0", "mdurl": "^2.0.0", "punycode.js": "^2.3.1", "uc.micro": "^2.1.0" }, "bin": { "markdown-it": "bin/markdown-it.mjs" } }, "sha512-a54IwgWPaeBCAAsv13YgmALOF1elABB08FxO9i+r4VFk5Vl4pKokRPeX8u5TCgSsPi6ec1otfLjdOpVcgbpshg=="],
 
