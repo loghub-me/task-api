@@ -3,10 +3,10 @@ import { MarkdownService } from '~/modules/markdown/service';
 import { MarkdownModel } from '~/modules/markdown/model';
 
 export const markdown = new Elysia({ prefix: '/markdown' }).post(
-  '/parse',
-  ({ body: { markdown } }) => MarkdownService.parse(markdown),
+  '/render',
+  ({ body: { markdown } }) => MarkdownService.render(markdown),
   {
-    body: MarkdownModel.parseRequest,
-    response: { 200: MarkdownModel.parseResponse },
+    body: MarkdownModel.renderRequest,
+    response: { 200: MarkdownModel.renderResponse },
   }
 );

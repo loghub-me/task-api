@@ -7,11 +7,11 @@ export abstract class MarkdownService {
     useSanitize: true,
   });
 
-  static async parse(markdown: string | string[]) {
+  static async render(markdown: string | string[]) {
     if (typeof markdown === 'string') {
-      return { html: this.renderer.render(markdown) };
+      return { result: this.renderer.render(markdown) };
     }
 
-    return { html: markdown.map((md) => this.renderer.render(md)) };
+    return { result: markdown.map((md) => this.renderer.render(md)) };
   }
 }
