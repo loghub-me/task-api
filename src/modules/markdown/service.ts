@@ -1,4 +1,4 @@
-import { MarkdownRenderer } from 'loghub-markdown-renderer';
+import { MarkdownRenderer } from 'loghub-me-markdown-renderer';
 import { JSDOM } from 'jsdom';
 
 export abstract class MarkdownService {
