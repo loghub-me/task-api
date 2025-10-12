@@ -1,5 +1,5 @@
-import { convertToWebpAndUploadImage, writeBufferToS3 } from '~/lib/image';
-import { generateAvatarBuffer } from '~/lib/avatar';
+import { convertToWebpAndUploadImage, writeBufferToS3 } from '@/lib/image';
+import { generateAvatarBuffer } from '@/lib/avatar';
 
 export abstract class AvatarService {
   static async generateAvatar(userId: number) {

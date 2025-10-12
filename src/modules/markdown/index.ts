@@ -1,6 +1,6 @@
 import { Elysia } from 'elysia';
-import { MarkdownService } from '~/modules/markdown/service';
-import { MarkdownModel } from '~/modules/markdown/model';
+import { MarkdownService } from '@/modules/markdown/service';
+import { MarkdownModel } from '@/modules/markdown/model';
 
 export const markdown = new Elysia({ prefix: '/markdown' }).post(
   '/render',

@@ -1,4 +1,4 @@
-import { convertToWebpAndUploadImage } from '~/lib/image';
+import { convertToWebpAndUploadImage } from '@/lib/image';
 
 export abstract class ImageService {
   static async upload(file: File, userId: string) {

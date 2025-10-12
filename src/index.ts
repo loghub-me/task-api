@@ -1,10 +1,10 @@
 import { Elysia } from 'elysia';
 import { cors } from '@elysiajs/cors';
-import { authPlugin } from '~/plugins/auth';
-import { markdown } from '~/modules/markdown';
-import { image } from '~/modules/image';
-import { avatar } from '~/modules/avatar';
-import { pinoLogger } from '~/lib/log';
+import { authPlugin } from '@/plugins/auth';
+import { markdown } from '@/modules/markdown';
+import { image } from '@/modules/image';
+import { avatar } from '@/modules/avatar';
+import { pinoLogger } from '@/lib/log';
 
 const app = new Elysia()
   .use(
