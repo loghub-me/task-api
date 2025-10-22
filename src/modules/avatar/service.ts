@@ -9,7 +9,7 @@ export abstract class AvatarService {
     return { data: path };
   }
 
-  static async uploadAvatar(file: File, userId: string) {
+  static async uploadAvatar(file: File, userId: number) {
     if (!file.type.startsWith('image/')) {
       throw new Error('Invalid file type');
     }

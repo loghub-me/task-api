@@ -1,9 +1,9 @@
-import { t } from 'elysia';
+import z from 'zod';
 
 export namespace AvatarModel {
-  export const generateRequest = t.Object({ userId: t.Number() });
-  export const generateResponse = t.Object({ data: t.String() });
+  export const generateRequest = z.object({ userId: z.number() });
+  export const generateResponse = z.object({ data: z.string() });
 
-  export const uploadRequest = t.Object({ file: t.File(), userId: t.String() });
-  export const uploadResponse = t.Object({ data: t.String() });
+  export const uploadRequest = z.object({ file: z.file(), userId: z.coerce.number() });
+  export const uploadResponse = z.object({ data: z.string() });
 }

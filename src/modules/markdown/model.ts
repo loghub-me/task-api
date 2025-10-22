@@ -1,17 +1,17 @@
-import { t } from 'elysia';
+import z from 'zod';
 
 export namespace MarkdownModel {
-  const renderResult = t.Object({
-    html: t.String(),
-    anchors: t.Array(
-      t.Object({
-        level: t.Number(),
-        slug: t.String(),
-        text: t.String(),
+  const renderResult = z.object({
+    html: z.string(),
+    anchors: z.array(
+      z.object({
+        level: z.number(),
+        slug: z.string(),
+        text: z.string(),
       })
     ),
   });
 
-  export const renderRequest = t.Object({ markdown: t.Union([t.String(), t.Array(t.String())]) });
-  export const renderResponse = t.Object({ result: t.Union([renderResult, t.Array(renderResult)]) });
+  export const renderRequest = z.object({ markdown: z.union([z.string(), z.array(z.string())]) });
+  export const renderResponse = z.object({ result: z.union([renderResult, z.array(renderResult)]) });
 }

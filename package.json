@@ -7,14 +7,14 @@
     "build": "bun build --compile --minify-whitespace --minify-syntax --target bun --outfile server ./src/index.ts"
   },
   "dependencies": {
-    "@elysiajs/bearer": "^1.3.0",
-    "@elysiajs/cors": "^1.3.3",
-    "elysia": "latest",
+    "@elysiajs/bearer": "^1.4.1",
+    "@elysiajs/cors": "^1.4.0",
+    "elysia": "^1.4.11",
     "jsdom": "^26.1.0",
     "loghub-me-markdown-renderer": "^0.1.1",
     "pino": "^9.8.0",
     "sharp": "^0.34.2",
-    "zod": "^3.25.67"
+    "zod": "^4.1.12"
   },
   "devDependencies": {
     "@types/jsdom": "^21.1.7",

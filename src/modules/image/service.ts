@@ -1,7 +1,7 @@
 import { convertToWebpAndUploadImage } from '@/lib/image';
 
 export abstract class ImageService {
-  static async upload(file: File, userId: string) {
+  static async upload(file: File, userId: number) {
     if (!file.type.startsWith('image/')) {
       throw new Error('Invalid file type');
     }

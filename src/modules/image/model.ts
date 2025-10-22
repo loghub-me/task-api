@@ -1,6 +1,6 @@
-import { t } from 'elysia';
+import z from 'zod';
 
 export namespace ImageModel {
-  export const uploadRequest = t.Object({ file: t.File(), userId: t.String() });
-  export const uploadResponse = t.Object({ path: t.String() });
+  export const uploadRequest = z.object({ file: z.file(), userId: z.coerce.number() });
+  export const uploadResponse = z.object({ path: z.string() });
 }
