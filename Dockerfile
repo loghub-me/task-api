@@ -6,12 +6,7 @@ RUN bun install --frozen-lockfile
 
 COPY ./src ./src
 ENV NODE_ENV=production
-RUN bun build \
-	--compile \
-	--minify-whitespace \
-	--minify-syntax \
-	--outfile server \
-	src/index.ts
+RUN bun build:compile
 
 FROM gcr.io/distroless/cc-debian12 AS run
 
@@ -22,3 +17,4 @@ COPY --from=build /app/node_modules/jsdom /app/node_modules/jsdom
 
 ENV NODE_ENV=production
 CMD ["./server"]
+

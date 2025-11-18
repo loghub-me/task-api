@@ -4,14 +4,14 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "bun run --watch ./src/index.ts",
-    "build": "bun build --compile --minify-whitespace --minify-syntax --target bun --outfile server ./src/index.ts"
+    "build:compile": "bun build --compile --minify-whitespace --minify-syntax --outfile server src/index.ts"
   },
   "dependencies": {
     "@elysiajs/bearer": "^1.4.1",
     "@elysiajs/cors": "^1.4.0",
-    "elysia": "^1.4.11",
+    "elysia": "^1.4.16",
     "jsdom": "^26.1.0",
-    "loghub-me-markdown-renderer": "^0.1.1",
+    "loghub-me-markdown-renderer": "^0.1.2",
     "pino": "^9.8.0",
     "sharp": "^0.34.2",
     "zod": "^4.1.12"
