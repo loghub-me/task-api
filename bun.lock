@@ -1,5 +1,6 @@
 {
   "lockfileVersion": 1,
+  "configVersion": 0,
   "workspaces": {
     "": {
       "name": "task-api",
@@ -8,7 +9,7 @@
         "@elysiajs/cors": "^1.4.0",
         "elysia": "^1.4.16",
         "jsdom": "^26.1.0",
-        "loghub-me-markdown-renderer": "^0.1.2",
+        "loghub-me-markdown-renderer": "^0.2.0",
         "pino": "^9.8.0",
         "sharp": "^0.34.2",
         "zod": "^4.1.12",
@@ -177,7 +178,7 @@
 
     "linkify-it": ["linkify-it@5.0.0", "", { "dependencies": { "uc.micro": "^2.0.0" } }, "sha512-5aHCbzQRADcdP+ATqnDuhhJ/MRIqDkZX5pyjFHRRysS8vZ5AbqGEoFIb6pYHPZ+L/OC2Lc+xT8uHVVR5CAK/wQ=="],
 
-    "loghub-me-markdown-renderer": ["loghub-me-markdown-renderer@0.1.2", "", { "dependencies": { "highlight.js": "^11.11.1", "markdown-it": "^14.1.0", "markdown-it-anchor": "^9.2.0", "sanitize-html": "^2.17.0" } }, "sha512-HwHfGSZde94mxsBT4R9qV+Xdhinf+s62ulS5XLkcG+b/FfZTxtidaQfzU79Vlv1A/8fWxd9aaU6n/HFI65426A=="],
+    "loghub-me-markdown-renderer": ["loghub-me-markdown-renderer@0.2.0", "", { "dependencies": { "highlight.js": "^11.11.1", "markdown-it": "^14.1.0", "markdown-it-anchor": "^9.2.0", "sanitize-html": "^2.17.0" } }, "sha512-Rhga6acNBP5viI+DkZ0gcNe5RXzQJscr7tSI0f/N8K81r5nbg1tzdgt+syBxllDLuvN0QQJvHe6nKEgFU+xB5w=="],
 
     "lru-cache": ["lru-cache@10.4.3", "", {}, "sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ=="],
 

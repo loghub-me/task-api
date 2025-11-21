@@ -25,12 +25,10 @@ export abstract class MarkdownService {
 
   private static parseAnchors(html: string) {
     const dom = new JSDOM(html);
-    return Array.from(dom.window.document.querySelectorAll('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]')).map(
-      (el) => ({
-        level: parseInt(el.tagName[1], 10),
-        slug: el.id,
-        text: el.textContent || '',
-      })
-    );
+    return Array.from(dom.window.document.querySelectorAll('h1[id], h2[id], h3[id], h4[id]')).map((el) => ({
+      level: parseInt(el.tagName[1], 10),
+      slug: el.id,
+      text: el.textContent || '',
+    }));
   }
 }
