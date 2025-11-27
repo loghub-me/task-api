@@ -2,11 +2,7 @@ import { MarkdownRenderer } from 'loghub-me-markdown-renderer';
 import { JSDOM } from 'jsdom';
 
 export abstract class MarkdownService {
-  private static renderer = new MarkdownRenderer({
-    useMarkdownItAnchor: true,
-    useSafeLinkify: true,
-    useSanitize: true,
-  });
+  private static renderer = new MarkdownRenderer({ enabledPlugins: ['anchor', 'safeLink', 'captionedImage'] });
 
   static async render(markdown: string | string[]) {
     if (typeof markdown === 'string') {
