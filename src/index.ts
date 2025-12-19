@@ -5,6 +5,7 @@ import { markdown } from '@/modules/markdown';
 import { image } from '@/modules/image';
 import { avatar } from '@/modules/avatar';
 import { pinoLogger } from '@/lib/log';
+import { answer } from '@/modules/answer';
 
 const app = new Elysia()
   .use(
@@ -31,6 +32,7 @@ const app = new Elysia()
     }
   })
   .use(authPlugin)
+  .use(answer)
   .use(avatar)
   .use(image)
   .use(markdown)

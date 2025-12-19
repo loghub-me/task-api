@@ -6,7 +6,7 @@
 
 #### Repositories
 
-[![GitHub Repo](https://img.shields.io/badge/GitHub-Web-f94949?style=plastic&logo=github)](https://github.com/loghub-me/web-next)
+[![GitHub Repo](https://img.shields.io/badge/GitHub-Web-f94949?style=plastic&logo=github)](https://github.com/loghub-me/web)
 [![GitHub Repo](https://img.shields.io/badge/GitHub-API-6db240?style=plastic&logo=github)](https://github.com/loghub-me/api)
 [![GitHub Repo](https://img.shields.io/badge/GitHub-Task_API-aab2ff?style=plastic&logo=github)](https://github.com/loghub-me/task-api)
 [![GitHub Repo](https://img.shields.io/badge/GitHub-Markdown_Renderer-2d79c7?style=plastic&logo=github)](https://github.com/loghub-me/markdown-renderer)
@@ -30,6 +30,7 @@
 |     `S3_ENDPOINT`      | S3 엔드포인트     | `your-s3-endpoint`          |
 |   `S3_ACCESS_KEY_ID`   | S3 액세스 키 ID   | `your-s3-access-key-id`     |
 | `S3_SECRET_ACCESS_KEY` | S3 비밀 액세스 키 | `your-s3-secret-access-key` |
+|    `OPENAI_API_KEY`    | OpenAI API Key    | `your_openai_api_key`       |
 
 > `.env` 파일을 생성하여 위 환경 변수를 설정해주세요.
 
