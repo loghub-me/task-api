@@ -12,6 +12,21 @@ export abstract class MarkdownService {
     return { result: markdown.map((markdown) => this.renderAndParseAnchors(markdown)) };
   }
 
+  static async normalize(markdown: string) {
+    const normalizedMarkdown = markdown
+      .replace(/!\[.*?\]\(.*?\)/g, '') // Remove images
+      .replace(/\[([^\]]+)\]\([^\)]+\)/g, '$1') // Replace links with plain text
+      .replace(/```(\w+)?/g, ' ') // Remove code block delimiters
+      .replace(/<[^>]*>/g, '') // Remove HTML tags
+      .replace(/^(\s*)[#>\-\*]+(\s+)/gm, '$1$2') // Remove headings, blockquotes, and list markers
+      .replace(/^(\s*)\d+\.(\s+)/gm, '$1$2') // Remove numbered list markers
+      .replace(/[*_`~\[\]|]/g, ' ') // Remove special markdown characters
+      .replace(/[\n\r\t]/g, ' ') // Replace newlines and tabs with spaces
+      .replace(/\s+/g, ' ') // Collapse multiple spaces
+      .trim();
+    return { result: normalizedMarkdown };
+  }
+
   private static renderAndParseAnchors(markdown: string) {
     const html = this.renderer.render(markdown);
     const dom = new JSDOM(html);

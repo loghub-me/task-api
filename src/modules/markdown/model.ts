@@ -14,4 +14,7 @@ export namespace MarkdownModel {
 
   export const renderRequest = z.object({ markdown: z.union([z.string(), z.array(z.string())]) });
   export const renderResponse = z.object({ result: z.union([renderResult, z.array(renderResult)]) });
+
+  export const normalizeRequest = z.object({ markdown: z.string() });
+  export const normalizeResponse = z.object({ result: z.string() });
 }
